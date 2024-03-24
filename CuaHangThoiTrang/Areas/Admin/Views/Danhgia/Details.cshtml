@@ -1,0 +1,42 @@
+﻿@model CuaHangThoiTrang.Models.DANHGIA
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã sản phẩm: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maSP)
+        </dd>
+
+        <dt>
+            Nội dung đánh giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noidungDG)
+        </dd>
+
+        <dt>
+            Số sao
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sosao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maDG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

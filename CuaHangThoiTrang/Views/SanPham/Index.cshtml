@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<CuaHangThoiTrang.Models.SANPHAM>
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="~/Home/Index">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Sản phẩm</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page (san pham) -->
+<div class="container py-xl-4 py-lg-2">
+    <h2 class="title">Sản phẩm</h2><!--tiêu đề-->
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 product-men">
+                <a class="men-thumb-item" href="~/Home/ChitietSP?id=@item.maSP">
+                    <img src="/Content/img/@item.hinh" width="400px" height="300px">
+                </a><!--hình ảnh sản phẩm-->
+                <h4>@item.tenSP</h4> <!--Tên sản phẩm-->
+                <div>
+                    <div class="shoes_price"><span style="color: #ff4e5b;">@item.gia</span>VND</div>
+                </div>
+                <div class="occasion-cart">
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                        <form action="#" method="post">
+                            <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="1" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="@item.tenSP" />
+                                <input type="hidden" name="amount" value="@item.gia" />
+                                <input type="hidden" name="discount_amount" value="0" />
+                                <input type="hidden" name="currency_code" value="đ" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.maSP, @strURL = Request.Url.ToString() }))
+                                {
+                                    <input type="submit" name="submit" value="Add to cart" class="button" />
+                                }
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div style="text-align: center;">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+   
+</div>
+<!-- cart-js -->
+<script src="~/Assets/Client/js/minicart.js"></script>
+<script>
+    paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+
+    paypals.minicarts.cart.on('checkout', function (evt) {
+        var items = this.items(),
+            len = items.length,
+            total = 0,
+            i;
+
+        // Count the number of each item in the cart
+        for (i = 0; i < len; i++) {
+            total += items[i].get('quantity');
+        }
+
+        if (total < 3) {
+            alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+            evt.preventDefault();
+        }
+    });
+</script>
+<!-- //cart-js -->

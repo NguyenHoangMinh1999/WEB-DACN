@@ -1,0 +1,50 @@
+﻿@model PagedList.IPagedList<CuaHangThoiTrang.Models.THUONGHIEU>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Thương hiệu</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Thương Hiệu
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Logo
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenTH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mota)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.logo)" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maTH }) |
+                @Html.ActionLink("Details", "Details", new { id = item.maTH }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maTH })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+

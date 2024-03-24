@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CuaHangThoiTrang.Models.GIOHANG>
+
+@{
+    ViewBag.Title = "SuaGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="~/Home/Index">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Chỉnh sửa giỏ hàng</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- checkout page -->
+<div class="privacy py-sm-5 py-4">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            Đơn Hàng
+        </h3>
+        <!-- //tittle heading -->
+        <div class="checkout-right">
+            <div class="table-responsive">
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="rem1">
+                                <td class="invert-image">
+                                    <a href="~/Home/ChitietSP?id=@item.imaSP">
+                                        <img src="/Content/img/@item.shinh" alt=" " class="img-responsive">
+                                    </a>
+                                </td>
+                                <td class="invert">@item.stenSP</td>
+                                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.imaSP }))
+                                {
+                                    <td><input type="number" min="0" name="txtSoLg" value="@item.isoluong" /></td>
+
+                                    <td>@String.Format("{0:0,0}", item.dthanhtien) VNĐ</td>
+                                    <td>
+                                        <input type="submit" value="Cập nhật" class="btn-secondary" />
+                                        <br />
+                                        @*Xóa giỏ hàng gọi về Action XoaGioHang*@
+                                        <button class="submit">@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSP = item.imaSP })</button>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //checkout page -->

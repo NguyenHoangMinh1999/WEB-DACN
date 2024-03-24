@@ -1,0 +1,82 @@
+﻿﻿@model CuaHangThoiTrang.Models.DATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Chi tiết đơn hàng</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ Tên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGUOIDUNG.hoten)
+        </dd>
+
+
+        <dt>
+            Ngày đặt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayDat)
+        </dd>
+
+        <dt>
+            Tình trạng đơn hàng
+        </dt>
+
+        <dd>
+            @{
+                if (Model.trangThai == 0)
+                {
+                    <div style="color:red">Đang chờ xác nhận</div>
+                }
+                else if (Model.trangThai == 1)
+                {
+
+
+                    <div style="color:slateblue">Đã xác nhận</div>
+
+                }
+                else
+                {
+                    <div style="color:red">Đang chờ xác nhận</div>
+
+                }
+            }
+        </dd>
+
+        <dt>
+            Thanh toán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHUONGTHUCTHANHTOAN.tenPT)
+        </dd>
+
+        <dt>
+            Địa chỉ nhận hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+        <dt>
+            Tổng tiền
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tongGiaTri)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button> @Html.ActionLink("Xác nhận đơn hàng", "Xacnhan", new { id = Model.maDH }) </button>
+</p>

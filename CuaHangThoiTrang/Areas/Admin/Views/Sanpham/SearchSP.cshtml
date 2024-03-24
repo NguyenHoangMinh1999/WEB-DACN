@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CuaHangThoiTrang.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "SearchSP";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SearchSP</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Mã thương hiệu:
+        </th>
+        <th>
+            Mã danh mục:
+        </th>
+        <th>
+            Tên sản phẩm:
+        </th>
+        <th>
+            Giá:
+        </th>
+        <th>
+            Hình:
+        </th>
+        <th>
+            Hình 1:
+        </th>
+        <th>
+            Hình 2:
+        </th>
+        <th>
+            Số lượng:
+        </th>
+        <th>
+            Thông tin:
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.maTH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maDM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.thongTin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maSP }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maSP }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maSP })
+        </td>
+    </tr>
+}
+
+</table>

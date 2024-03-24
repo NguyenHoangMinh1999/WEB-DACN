@@ -1,0 +1,91 @@
+﻿@model CuaHangThoiTrang.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SANPHAM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã thương hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maTH)
+        </dd>
+
+        <dt>
+            Mã danh mục:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maDM)
+        </dd>
+
+        <dt>
+            Tên Sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenSP)
+        </dd>
+
+        <dt>
+            Giá:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gia)
+        </dd>
+
+        <dt>
+           Hình:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh)
+        </dd>
+
+        <dt>
+            Hình 1:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh1)
+        </dd>
+
+        <dt>
+            Hình 2:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh2)
+        </dd>
+
+        <dt>
+            Số lượng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soLuong)
+        </dd>
+
+        <dt>
+            Thông tin
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thongTin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maSP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

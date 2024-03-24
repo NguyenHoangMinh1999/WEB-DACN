@@ -1,0 +1,44 @@
+﻿@model PagedList.IPagedList<CuaHangThoiTrang.Models.DANHMUC>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh mục</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Mã Danh mục</p>
+        </th>
+        <th>
+            <p>Tên Danh mục</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.maDM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenDM)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maDM }) |
+                @Html.ActionLink("Details", "Details", new { id = item.maDM }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maDM })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))

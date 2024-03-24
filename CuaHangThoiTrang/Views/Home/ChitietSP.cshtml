@@ -1,0 +1,88 @@
+﻿@using CuaHangThoiTrang.Models;
+@using CuaHangThoiTrang.DAO;
+@{
+    ViewBag.Title = "ChitietSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    SANPHAM sp = ViewBag.Chitiet;
+}
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="~/Home/Index">Home</a>
+                    <i>|</i>
+                </li>
+                <li>@sp.tenSP</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- Single Page -->
+<div class="banner-bootom-w3-agileits py-5">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            @sp.tenSP   
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <div class="col-lg-5 col-md-8 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="slides">
+                        <div class="thumb-image">
+                            <img src="~/Content/img/@sp.hinh" data-imagezoom="true" class="img-fluid" alt="">
+                            <img src="~/Content/img/@sp.hinh1" data-imagezoom="true" class="img-fluid" alt="">
+                            <img src="~/Content/img/@sp.hinh2" data-imagezoom="true" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                <h3 class="mb-3">@sp.tenSP</h3>
+                <p class="mb-3">
+                    <span class="item_price">@sp.gia</span>VND
+                    <label>Free delivery</label>
+                </p>
+                <div class="single-infoagile">
+                    <ul>
+                        @foreach (var item in sp.CHITIETSIZEs)
+                        {
+                            <li class="mb-3">
+                                @item.SIZE.tenS
+                            </li>
+
+                        }
+                        @foreach (var item in sp.MAUs)
+                        {
+                            <li class="mb-3"> Màu:
+                                @item.tenMau
+                            </li>
+
+                        }
+                        <li class="mb-3">
+                            @sp.thongTin
+                        </li>
+                    </ul>
+                </div>
+                <div class="product-single-w3l">
+                    <p class="my-sm-4 my-3">
+                        <i class="fas fa-retweet mr-3"></i>Net banking
+                    </p>
+                </div>
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = sp.maSP, @strURL = Request.Url.ToString() }))
+                    {
+                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Single Page -->

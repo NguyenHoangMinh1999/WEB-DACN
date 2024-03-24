@@ -1,0 +1,25 @@
+﻿@model CuaHangThoiTrang.Models.DANHMUC
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2>Details</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Tên Danh mục: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenDM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maDM }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

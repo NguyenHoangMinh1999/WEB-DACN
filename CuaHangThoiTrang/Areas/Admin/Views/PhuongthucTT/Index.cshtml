@@ -1,0 +1,42 @@
+﻿@model PagedList.IPagedList<CuaHangThoiTrang.Models.PHUONGTHUCTHANHTOAN>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Phương thức thanh toán</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã phương thức:
+        </th>
+        <th>
+            Tên phương thức:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.maPT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenPT)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.maPT }) |
+                @Html.ActionLink("Details", "Details", new { id = item.maPT }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.maPT })
+            </td>
+        </tr>
+    }
+
+</table>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))

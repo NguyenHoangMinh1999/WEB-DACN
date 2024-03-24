@@ -1,0 +1,42 @@
+﻿@model CuaHangThoiTrang.Models.THUONGHIEU
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Thương Hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenTH)
+        </dd>
+
+        <dt>
+            Mô Tả:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mota)
+        </dd>
+
+        <dt>
+            Logo:
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.logo)" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maTH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
